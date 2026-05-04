@@ -2,12 +2,12 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #fdfdf6;
+  --bg: #fdfdf8;
   --ink: #1f1b18;
   --muted: #b3b3b3;
   --accent: #6ea5c8;
   --line: rgba(0, 0, 0, 0.06);
-  --line-soft: rgba(0, 0, 0, 0.03);
+  --line-soft: rgba(0, 0, 0, 0.015);
   --check-tint: rgba(0, 0, 0, 0.01);
   --line-pink: rgba(230, 75, 130, 0.14);
   --line-sky: rgba(110, 165, 200, 0.22);
@@ -47,37 +47,49 @@ body {
   z-index: 0;
 
   background-image:
-    /* 1. neutral 4-column lines */
-    linear-gradient(to right, var(--line) 1px, transparent 1px),
-    /* 2. neutral center vertical line (at 50%) */
+    /* 1. inner-right vertical: 1px line 2px from right edge — pairs with border-right for thin double */
+    linear-gradient(to right,
+      transparent calc(100% - 3px),
+      rgba(0, 0, 0, 0.10) calc(100% - 3px),
+      rgba(0, 0, 0, 0.10) calc(100% - 2px),
+      transparent calc(100% - 2px)),
+    /* 2. neutral column verticals at 25%, 50%, 75% */
+    linear-gradient(to right,
+      transparent calc(25% - 1px), var(--line) calc(25% - 1px), var(--line) 25%, transparent 25%,
+      transparent calc(50% - 1px), var(--line) calc(50% - 1px), var(--line) 50%, transparent 50%,
+      transparent calc(75% - 1px), var(--line) calc(75% - 1px), var(--line) 75%, transparent 75%),
+    /* 3. neutral center vertical at 50% */
     linear-gradient(to right,
       transparent calc(50% - 1px),
       var(--line) calc(50% - 1px),
       var(--line) 50%,
       transparent 50%),
-    /* 3. SKY lines paired tight with each main column line */
+    /* 4. SKY verticals at 3 / 28 / 53 / 78 — leftmost (3%) is the start mark */
     linear-gradient(to right,
       transparent calc(3% - 1px),  var(--line-sky) calc(3% - 1px),  var(--line-sky) 3%,  transparent 3%,
       transparent calc(28% - 1px), var(--line-sky) calc(28% - 1px), var(--line-sky) 28%, transparent 28%,
       transparent calc(53% - 1px), var(--line-sky) calc(53% - 1px), var(--line-sky) 53%, transparent 53%,
       transparent calc(78% - 1px), var(--line-sky) calc(78% - 1px), var(--line-sky) 78%, transparent 78%),
-    /* 4. neutral horizontal detail lines every 24px */
-    linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
+    /* 5. horizontal grid lines, every 96px, dim grey, starting from sky line at 3% */
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 
   background-size:
-    25% 100%,
     100% 100%,
     100% 100%,
-    100% 24px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
+    100% 100%,
+    100% 100%,
+    calc(100% - 3%) 96px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 100% 0;
   background-repeat:
-    repeat-x,
+    no-repeat,
+    no-repeat,
     no-repeat,
     no-repeat,
     repeat-y;
 
-  border-left: 3px double var(--line-soft);
-  border-right: 3px double var(--line-soft);
+  /* right edge: 1px outer + 1px gap + 1px inner (drawn by layer 1 above) */
+  border-left: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 /* ---------- container with 4 equal columns ---------- */
@@ -145,16 +157,18 @@ body {
 
 .intro .tagline a:hover { color: var(--accent); }
 
-/* ---------- horizontal divider: pink + sky double line ---------- */
+/* ---------- horizontal divider: pink + sky double line, aligned to sky vertical at 3% ---------- */
 hr {
   grid-column: 1 / -1;
   border: none;
   height: 5px;
   margin: 48px 0 24px;   /* more space above + below */
+  margin-left: 3%;
+  width: 97%;
   background-image:
     linear-gradient(to bottom,
-      rgba(230, 75, 130, 0.18) 0,
-      rgba(230, 75, 130, 0.18) 1px,
+      rgba(230, 75, 130, 0.10) 0,
+      rgba(230, 75, 130, 0.10) 1px,
       transparent 1px,
       transparent 4px,
       var(--line-sky) 4px,
@@ -192,7 +206,8 @@ hr {
   position: absolute;
   top: 0;
   left: 0;
-  margin-top: 144px;
+  /* aligned to 5th item (Zespri): 4 items × (line-height 24px + row-gap 6px) = 120px */
+  margin-top: 120px;
   font-size: 11px;
   font-weight: 400;
 }
@@ -209,7 +224,7 @@ hr {
   display: grid;
   grid-template-columns: 1fr 2fr;
   list-style: none;
-  row-gap: 12px;
+  row-gap: 6px;
 }
 
 .items li {
