@@ -310,23 +310,88 @@ hr {
 
 /* ---------- responsive ---------- */
 @media (max-width: 820px) {
-  body { padding: 40px 20px 80px; }
-  .grid-bg { display: none; }
+  body { padding: 40px 24px 80px; }
+
+  /* keep grid-bg visible on mobile, but shrink to viewport width
+     and hide the inner column verticals (25/50/75% grey + 50% center)
+     since the layout collapses to 1 column. keep symmetric left/right edges,
+     sky, pink — left edge at 3% sky, right edge mirrored at 97%. */
+  .grid-bg {
+    width: 100%;
+    left: 0;
+    transform: none;
+    border-right: none;
+    background-image:
+      /* 1. SKY verticals — keep 3/28/53/78 plus mirror at 97 for symmetric right edge */
+      linear-gradient(to right,
+        transparent calc(3% - 1px),  var(--line-sky) calc(3% - 1px),  var(--line-sky) 3%,  transparent 3%,
+        transparent calc(28% - 1px), var(--line-sky) calc(28% - 1px), var(--line-sky) 28%, transparent 28%,
+        transparent calc(53% - 1px), var(--line-sky) calc(53% - 1px), var(--line-sky) 53%, transparent 53%,
+        transparent calc(78% - 1px), var(--line-sky) calc(78% - 1px), var(--line-sky) 78%, transparent 78%,
+        transparent calc(97% - 1px), var(--line-sky) calc(97% - 1px), var(--line-sky) 97%, transparent 97%),
+      /* 1b. PINK verticals (kept) */
+      linear-gradient(to right,
+        transparent calc(15% - 1px), rgba(230, 75, 130, 0.06) calc(15% - 1px), rgba(230, 75, 130, 0.06) 15%, transparent 15%,
+        transparent calc(40% - 1px), rgba(230, 75, 130, 0.06) calc(40% - 1px), rgba(230, 75, 130, 0.06) 40%, transparent 40%,
+        transparent calc(65% - 1px), rgba(230, 75, 130, 0.06) calc(65% - 1px), rgba(230, 75, 130, 0.06) 65%, transparent 65%,
+        transparent calc(90% - 1px), rgba(230, 75, 130, 0.06) calc(90% - 1px), rgba(230, 75, 130, 0.06) 90%, transparent 90%),
+      /* 5. horizontal grey lines */
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      /* 6. horizontal sky accent */
+      linear-gradient(to bottom, rgba(110, 165, 200, 0.14) 1px, transparent 1px),
+      /* 7. horizontal pink accent */
+      linear-gradient(to bottom, rgba(230, 75, 130, 0.06) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      100% 100%,
+      94% 96px,
+      94% 288px,
+      94% 576px;
+    background-position: 0 0, 0 0, 50% 0, 50% 0, 50% 0;
+    background-repeat:
+      no-repeat,
+      no-repeat,
+      repeat-y,
+      repeat-y,
+      repeat-y;
+  }
+
   .container { grid-template-columns: 1fr; }
   .column-numbers { display: none; }
   .intro,
   .block,
   .items,
   .contact-content { grid-column: 1 / -1; padding: 0; }
-  .block { grid-template-columns: 1fr; gap: 12px; }
+  .block { grid-template-columns: 1fr; gap: 16px; }
   .items { grid-template-columns: 1fr; row-gap: 4px; }
   .item-title, .item-desc, .block-label { padding: 0; }
-  .items li { display: list-item; margin-bottom: 16px; }
+  .items li { display: list-item; margin-bottom: 20px; }
   .items a { display: block; }
-  .item-title { display: block; }
-  .item-desc { display: block; margin-top: 4px; }
-  .intro h1 { font-size: 24px; }
-  .intro .tagline { font-size: 18px; }
-  .item-desc { font-size: 16px; }
-  hr { margin: 32px 0; }
+  .item-title { display: block; font-size: 15px; }
+  .item-desc { display: block; margin-top: 4px; font-size: 15px; }
+  .intro h1 { font-size: 28px; line-height: 32px; margin-bottom: 16px; }
+  .intro .tagline { font-size: 16px; line-height: 24px; }
+  .block-label { font-size: 11px; margin-bottom: 12px; }
+  .earlier-item { font-size: 14px !important; }
+
+  /* Earlier sub-label: in mobile, drop the absolute positioning so it flows
+     naturally between Shades and Zespri instead of overlapping content */
+  .block-label.sub-label {
+    position: static;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  /* hr: span from sky line at 3vw to sky line at 97vw (symmetric)
+     (offset for body padding: 24px each side) */
+  hr {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    margin-left: calc(3vw - 24px);
+    width: 94vw;
+  }
+
+  /* contact links wrap on smaller screens */
+  .contact-links { flex-wrap: wrap; gap: 16px 24px; font-size: 15px; }
+  .contact-line { font-size: 15px; }
 }
