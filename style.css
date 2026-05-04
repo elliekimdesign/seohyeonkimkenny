@@ -70,24 +70,36 @@ body {
       transparent calc(28% - 1px), var(--line-sky) calc(28% - 1px), var(--line-sky) 28%, transparent 28%,
       transparent calc(53% - 1px), var(--line-sky) calc(53% - 1px), var(--line-sky) 53%, transparent 53%,
       transparent calc(78% - 1px), var(--line-sky) calc(78% - 1px), var(--line-sky) 78%, transparent 78%),
+    /* 4b. PINK verticals between sky lines (15/40/65/90%) — very subtle, adds tartan rhythm */
+    linear-gradient(to right,
+      transparent calc(15% - 1px), rgba(230, 75, 130, 0.06) calc(15% - 1px), rgba(230, 75, 130, 0.06) 15%, transparent 15%,
+      transparent calc(40% - 1px), rgba(230, 75, 130, 0.06) calc(40% - 1px), rgba(230, 75, 130, 0.06) 40%, transparent 40%,
+      transparent calc(65% - 1px), rgba(230, 75, 130, 0.06) calc(65% - 1px), rgba(230, 75, 130, 0.06) 65%, transparent 65%,
+      transparent calc(90% - 1px), rgba(230, 75, 130, 0.06) calc(90% - 1px), rgba(230, 75, 130, 0.06) 90%, transparent 90%),
     /* 5. horizontal grey lines, every 96px, dim grey, starting from sky line at 3% */
     linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
     /* 6. horizontal SKY accent lines, every 288px (every 3rd grey line), softer than vertical sky */
-    linear-gradient(to bottom, rgba(110, 165, 200, 0.14) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(110, 165, 200, 0.14) 1px, transparent 1px),
+    /* 7. horizontal PINK accent — every 576px (every 2nd sky horizontal), very subtle */
+    linear-gradient(to bottom, rgba(230, 75, 130, 0.06) 1px, transparent 1px);
 
   background-size:
     100% 100%,
     100% 100%,
     100% 100%,
     100% 100%,
+    100% 100%,
     calc(100% - 3%) 96px,
-    calc(100% - 3%) 288px;
-  background-position: 0 0, 0 0, 0 0, 0 0, 100% 0, 100% 0;
+    calc(100% - 3%) 288px,
+    calc(100% - 3%) 576px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 100% 0, 100% 0, 100% 0;
   background-repeat:
     no-repeat,
     no-repeat,
     no-repeat,
     no-repeat,
+    no-repeat,
+    repeat-y,
     repeat-y,
     repeat-y;
 
@@ -171,8 +183,8 @@ hr {
   width: 97%;
   background-image:
     linear-gradient(to bottom,
-      rgba(230, 75, 130, 0.10) 0,
-      rgba(230, 75, 130, 0.10) 1px,
+      rgba(230, 75, 130, 0.06) 0,
+      rgba(230, 75, 130, 0.06) 1px,
       transparent 1px,
       transparent 4px,
       var(--line-sky) 4px,
