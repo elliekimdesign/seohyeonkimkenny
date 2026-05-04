@@ -145,5 +145,52 @@
     </section>
 
   </main>
+
+  <!-- Structure-mode meta labels (only visible when body.structure-mode) -->
+  <div class="structure-overlay" aria-hidden="true">
+    <!-- top: system header -->
+    <div class="meta meta-system">840 max · 4-col · 24/24 baseline</div>
+
+    <!-- column markers above the grid (top, between sections) -->
+    <div class="meta meta-col meta-col-1">01</div>
+    <div class="meta meta-col meta-col-2">02</div>
+    <div class="meta meta-col meta-col-3">03</div>
+    <div class="meta meta-col meta-col-4">04</div>
+
+    <!-- baseline rhythm label only (96/288 removed for clarity) -->
+    <div class="meta meta-rhythm meta-rhythm-1">24 BASE</div>
+
+    <!-- type hierarchy labels next to intro -->
+    <div class="meta meta-type meta-type-h1">H1 · BOLDONSE 20/24</div>
+    <div class="meta meta-type meta-type-body">BODY · MONO 13/24</div>
+
+    <!-- color tokens row at the bottom -->
+    <div class="meta meta-tokens">
+      <span><i class="sw" style="background:#6ea5c8"></i>#6ea5c8</span>
+      <span><i class="sw" style="background:#e64b82"></i>#e64b82</span>
+      <span><i class="sw" style="background:#1f1b18"></i>#1f1b18</span>
+      <span><i class="sw" style="background:#fdfdf8;border:1px solid rgba(0,0,0,0.1)"></i>#fdfdf8</span>
+    </div>
+  </div>
+
+  <!-- Mode toggle button -->
+  <div class="mode-toggle" role="tablist" aria-label="View mode">
+    <button class="mode-btn is-active" data-mode="design" type="button">Design</button>
+    <button class="mode-btn" data-mode="structure" type="button">Structure</button>
+  </div>
+
+  <script>
+    (function () {
+      var body = document.body;
+      var btns = document.querySelectorAll('.mode-btn');
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var mode = btn.getAttribute('data-mode');
+          btns.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+          body.classList.toggle('structure-mode', mode === 'structure');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
