@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benefit Cosmetics · ICN Duty-Free — Seohyeon Kimkenny</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── page-scoped overrides ── */
+    /* let the map break wider than the 840 px content column */
+    .container { max-width: min(calc(100vw - 48px), 1200px); }
+
+    .sketch-wrap {
+      grid-column: 1 / -1;
+      padding: 0 0 0 0;
+      margin: 0;
+    }
+    .sketch-caption {
+      grid-column: 1 / -1;
+      padding: 0 24px;
+      margin-bottom: 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .sketch-wrap svg {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── sketch element styles ── */
+    .sketch-wrap .floor          { fill: var(--ink);    opacity: 0.07; stroke: none; }
+    .sketch-wrap .store          { fill: var(--ink);    opacity: 0.22; stroke: none; }
+    .sketch-wrap .store-benefit  { fill: var(--accent); opacity: 0.85; stroke: none; }
+    .sketch-wrap .great-hall     { fill: var(--accent); opacity: 0.10; stroke: none; }
+
+    .sketch-wrap .zone-label {
+      font-family: var(--mono); font-size: 15px; font-weight: 700; fill: var(--ink);
+    }
+    .sketch-wrap .zone-sub {
+      font-family: var(--mono); font-size: 11px; fill: var(--muted);
+    }
+    .sketch-wrap .gate-big {
+      font-family: var(--mono); font-size: 17px; font-weight: 700;
+      fill: var(--ink); opacity: 0.50;
+    }
+    .sketch-wrap .cat-label {
+      font-family: var(--mono); font-size: 9px; font-weight: 700;
+      letter-spacing: 0.4px; fill: var(--accent); opacity: 0.70;
+    }
+    .sketch-wrap .benefit-tag {
+      font-family: var(--mono); font-size: 11px; font-weight: 700;
+      fill: var(--accent);
+    }
+    .sketch-wrap .immig circle {
+      fill: var(--ink); opacity: 0.55;
+    }
+    .sketch-wrap .immig text {
+      font-family: var(--mono); font-size: 10px; font-weight: 700;
+      fill: var(--bg);
+    }
+    .sketch-wrap .immig-label {
+      font-family: var(--mono); font-size: 9px; fill: var(--muted);
+    }
+    .sketch-wrap .link-line {
+      stroke: var(--ink); stroke-width: 1;
+      stroke-dasharray: 4 4; opacity: 0.40;
+    }
+    .sketch-wrap .divider-line {
+      stroke: var(--ink); stroke-width: 0.75;
+      stroke-dasharray: 3 5; opacity: 0.25;
+    }
+    .sketch-wrap .wayfind {
+      font-family: var(--mono); font-size: 9.5px;
+      fill: var(--muted); letter-spacing: 0.4px;
+    }
+    .sketch-wrap .legend-text {
+      font-family: var(--mono); font-size: 11.5px; fill: var(--ink);
+    }
+    .sketch-wrap .term-rule {
+      stroke: var(--ink); stroke-width: 1; opacity: 0.18;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <main class="container">
+    <section class="intro">
+      <h1>Benefit Cosmetics — ICN Duty-Free</h1>
+      <p class="tagline"><a href="index.html">← Back</a></p>
+    </section>
+
+    <hr />
+
+    <p class="sketch-caption">
+      Floor-plan overview of Incheon Airport (ICN) duty-free —
+      <strong>Terminal 1</strong> (East Hall · Gates 1–28, West Hall · Gates 29–50) and
+      <strong>Terminal 2</strong> (Great Hall hub · Gates 248–253, west wing to Gate 230, east wing to Gate 270).
+      Store blocks labelled by category; <strong>Benefit Cosmetics</strong> counters are highlighted.
+      T2 is a separate terminal connected via the IAT Concourse shuttle (≈ 7–10 min). Benefit positions are approximate — illustrative, not an official wayfinding map.
+    </p>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+    <!--   SINGLE PANORAMIC MAP — NO CAROUSEL                                   -->
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+    <figure class="sketch-wrap">
+      <svg viewBox="0 0 1060 530" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="Panoramic floor-plan of Incheon Airport ICN duty-free: Terminal 1 (left) with East Hall gates 1-28 and West Hall gates 29-50, and Terminal 2 (right) with the Great Hall hub near gates 248-253 and wings to gates 230 and 270. Benefit Cosmetics counters are highlighted in both terminals.">
+
+        <!-- ══════════════ SECTION HEADER LABELS ══════════════ -->
+        <text x="330" y="19" class="zone-label" text-anchor="middle">Terminal 1</text>
+        <text x="330" y="35" class="zone-sub" text-anchor="middle">Departure Level 3F · East Hall (Gates 1–28) + West Hall (Gates 29–50)</text>
+
+        <text x="888" y="19" class="zone-label" text-anchor="middle">Terminal 2</text>
+        <text x="888" y="35" class="zone-sub" text-anchor="middle">Departure Level 3F · Gates 230–270 · Great Hall hub near 248–253</text>
+
+        <!-- ══════════════ T1 FLOOR ══════════════ -->
+        <rect class="floor" x="8" y="108" width="647" height="310" rx="8"/>
+
+        <!-- T1 hall-zone dividers (East / Central / West) -->
+        <line class="divider-line" x1="227" y1="108" x2="227" y2="418"/>
+        <line class="divider-line" x1="440" y1="108" x2="440" y2="418"/>
+
+        <!-- ── T1 NORTH-WALL STORES (sticking above floor, y=68–108) ── -->
+        <!-- Liquor & Tobacco East -->
+        <rect class="store" x="13" y="68" width="66" height="40" rx="2"/>
+        <text x="46" y="62" class="cat-label" text-anchor="middle">LIQUOR · TOBACCO</text>
+
+        <!-- Cosmetics & Perfume East — Benefit counter here -->
+        <rect class="store"         x="86"  y="68" width="76" height="40" rx="2"/>
+        <rect class="store-benefit" x="91"  y="70" width="40" height="36" rx="2"/>
+        <text x="124" y="62" class="cat-label" text-anchor="middle">COSMETICS · PERFUME</text>
+
+        <!-- Electronics -->
+        <rect class="store" x="169" y="68" width="54" height="40" rx="2"/>
+        <text x="196" y="62" class="cat-label" text-anchor="middle">ELECTRONICS</text>
+
+        <!-- Central Skincare & Beauty — Benefit counter here -->
+        <rect class="store"         x="234" y="68" width="98" height="40" rx="2"/>
+        <rect class="store-benefit" x="240" y="70" width="52" height="36" rx="2"/>
+        <text x="283" y="62" class="cat-label" text-anchor="middle">SKINCARE · BEAUTY</text>
+
+        <!-- Fashion Central -->
+        <rect class="store" x="340" y="68" width="72" height="40" rx="2"/>
+        <text x="376" y="62" class="cat-label" text-anchor="middle">FASHION</text>
+
+        <!-- Watch & Jewelry -->
+        <rect class="store" x="420" y="68" width="72" height="40" rx="2"/>
+        <text x="456" y="62" class="cat-label" text-anchor="middle">WATCH · JEWELRY</text>
+
+        <!-- Character & Food West -->
+        <rect class="store" x="500" y="68" width="72" height="40" rx="2"/>
+        <text x="536" y="62" class="cat-label" text-anchor="middle">CHARACTER · FOOD</text>
+
+        <!-- Liquor & Tobacco West -->
+        <rect class="store" x="580" y="68" width="70" height="40" rx="2"/>
+        <text x="615" y="62" class="cat-label" text-anchor="middle">LIQUOR · TOBACCO</text>
+
+        <!-- Benefit labels below north stores -->
+        <text x="111" y="122" class="benefit-tag" text-anchor="middle">Benefit</text>
+        <text x="266" y="122" class="benefit-tag" text-anchor="middle">Benefit</text>
+
+        <!-- ── T1 CORRIDOR — gate numbers, zone labels, immigration ── -->
+        <text x="28"  y="215" class="gate-big">1G</text>
+        <text x="590" y="215" class="gate-big">50G</text>
+
+        <text x="113" y="278" class="zone-sub"  text-anchor="middle">East Hall</text>
+        <text x="113" y="293" class="wayfind"   text-anchor="middle">Gates 1–28</text>
+        <text x="333" y="278" class="zone-sub"  text-anchor="middle">Central Duty-Free</text>
+        <text x="547" y="278" class="zone-sub"  text-anchor="middle">West Hall</text>
+        <text x="547" y="293" class="wayfind"   text-anchor="middle">Gates 29–50</text>
+
+        <g class="immig">
+          <circle cx="100" cy="330" r="15"/>
+          <text x="100" y="334" text-anchor="middle">3</text>
+        </g>
+        <text x="100" y="353" class="immig-label" text-anchor="middle">출국심사</text>
+        <text x="100" y="364" class="immig-label" text-anchor="middle">Immigration</text>
+
+        <g class="immig">
+          <circle cx="553" cy="330" r="15"/>
+          <text x="553" y="334" text-anchor="middle">2</text>
+        </g>
+        <text x="553" y="353" class="immig-label" text-anchor="middle">출국심사</text>
+        <text x="553" y="364" class="immig-label" text-anchor="middle">Immigration</text>
+
+        <!-- ── T1 SOUTH-WALL STORES (sticking below floor, y=415–455) ── -->
+        <!-- Food & Café East -->
+        <rect class="store" x="13"  y="415" width="72" height="40" rx="2"/>
+        <text x="49"  y="477" class="cat-label" text-anchor="middle">FOOD · CAFÉ</text>
+
+        <!-- Character & Gifts -->
+        <rect class="store" x="93"  y="415" width="70" height="40" rx="2"/>
+        <text x="128" y="477" class="cat-label" text-anchor="middle">CHARACTER · GIFTS</text>
+
+        <!-- Fashion South -->
+        <rect class="store" x="171" y="415" width="64" height="40" rx="2"/>
+        <text x="203" y="477" class="cat-label" text-anchor="middle">FASHION</text>
+
+        <!-- Electronics South -->
+        <rect class="store" x="243" y="415" width="66" height="40" rx="2"/>
+        <text x="276" y="477" class="cat-label" text-anchor="middle">ELECTRONICS</text>
+
+        <!-- Beauty & Cosmetics Central South — Benefit counter here -->
+        <rect class="store"         x="317" y="415" width="78" height="40" rx="2"/>
+        <rect class="store-benefit" x="323" y="417" width="42" height="36" rx="2"/>
+        <text x="344" y="462" class="benefit-tag" text-anchor="middle">Benefit</text>
+        <text x="356" y="477" class="cat-label" text-anchor="middle">BEAUTY · COSMETICS</text>
+
+        <!-- Fashion & Accessories West -->
+        <rect class="store" x="403" y="415" width="70" height="40" rx="2"/>
+        <text x="438" y="477" class="cat-label" text-anchor="middle">FASHION · ACC.</text>
+
+        <!-- Food & Liquor West -->
+        <rect class="store" x="481" y="415" width="72" height="40" rx="2"/>
+        <text x="517" y="477" class="cat-label" text-anchor="middle">FOOD · LIQUOR</text>
+
+        <!-- Character West -->
+        <rect class="store" x="561" y="415" width="88" height="40" rx="2"/>
+        <text x="605" y="477" class="cat-label" text-anchor="middle">CHARACTER · SUNGLASSES</text>
+
+        <!-- ══════════════ IAT SHUTTLE CONNECTION ══════════════ -->
+        <line class="link-line" x1="660" y1="270" x2="714" y2="270"/>
+        <text x="687" y="258" class="zone-sub"  text-anchor="middle">IAT Shuttle</text>
+        <text x="687" y="272" class="wayfind"   text-anchor="middle">via Concourse</text>
+        <text x="687" y="285" class="wayfind"   text-anchor="middle">≈ 7–10 min</text>
+
+        <!-- ══════════════ T2 FLOOR ══════════════ -->
+        <!-- Full floor rectangle -->
+        <rect class="floor" x="720" y="108" width="333" height="310" rx="8"/>
+        <!-- Great Hall subtle accent band (central hub near 248-253) -->
+        <rect class="great-hall" x="840" y="108" width="130" height="310" rx="4"/>
+
+        <!-- ── T2 NORTH-WALL STORES (y=68–108) ── -->
+        <!-- Liquor & Tobacco West wing -->
+        <rect class="store" x="725" y="68" width="66" height="40" rx="2"/>
+        <text x="758" y="62" class="cat-label" text-anchor="middle">LIQUOR · TOBACCO</text>
+
+        <!-- Fashion (west of hub) -->
+        <rect class="store" x="799" y="68" width="58" height="40" rx="2"/>
+        <text x="828" y="62" class="cat-label" text-anchor="middle">FASHION</text>
+
+        <!-- Cosmetics & Beauty — Great Hall — Benefit counter here -->
+        <rect class="store"         x="865" y="68" width="88" height="40" rx="2"/>
+        <rect class="store-benefit" x="871" y="70" width="50" height="36" rx="2"/>
+        <text x="909" y="62" class="cat-label" text-anchor="middle">COSMETICS · BEAUTY</text>
+
+        <!-- Watch & Electronics East wing -->
+        <rect class="store" x="961" y="68" width="66" height="40" rx="2"/>
+        <text x="994" y="62" class="cat-label" text-anchor="middle">WATCH · ELECTRONICS</text>
+
+        <!-- Benefit label below T2 north store -->
+        <text x="896" y="122" class="benefit-tag" text-anchor="middle">Benefit</text>
+
+        <!-- ── T2 CORRIDOR ── -->
+        <text x="726" y="215" class="gate-big">230G</text>
+        <text x="950" y="215" class="gate-big">270G</text>
+
+        <text x="905" y="278" class="zone-sub"  text-anchor="middle">Great Hall</text>
+        <text x="905" y="293" class="wayfind"   text-anchor="middle">Gates 248–253</text>
+
+        <g class="immig">
+          <circle cx="758" cy="330" r="15"/>
+          <text x="758" y="334" text-anchor="middle">T</text>
+        </g>
+        <text x="758" y="353" class="immig-label" text-anchor="middle">출국심사</text>
+        <text x="758" y="364" class="immig-label" text-anchor="middle">Immigration</text>
+
+        <!-- ── T2 SOUTH-WALL STORES (y=415–455) ── -->
+        <!-- Food & Character West -->
+        <rect class="store" x="725" y="415" width="80" height="40" rx="2"/>
+        <text x="765" y="477" class="cat-label" text-anchor="middle">FOOD · CHARACTER</text>
+
+        <!-- Fashion South -->
+        <rect class="store" x="813" y="415" width="62" height="40" rx="2"/>
+        <text x="844" y="477" class="cat-label" text-anchor="middle">FASHION</text>
+
+        <!-- Beauty & Skincare — Great Hall South — Benefit counter here -->
+        <rect class="store"         x="883" y="415" width="82" height="40" rx="2"/>
+        <rect class="store-benefit" x="889" y="417" width="46" height="36" rx="2"/>
+        <text x="912" y="462" class="benefit-tag" text-anchor="middle">Benefit</text>
+        <text x="924" y="477" class="cat-label" text-anchor="middle">BEAUTY · SKINCARE</text>
+
+        <!-- Electronics East -->
+        <rect class="store" x="973" y="415" width="66" height="40" rx="2"/>
+        <text x="1006" y="477" class="cat-label" text-anchor="middle">ELECTRONICS</text>
+
+        <!-- ══════════════ LEGEND ══════════════ -->
+        <line class="term-rule" x1="8" y1="492" x2="1052" y2="492"/>
+
+        <rect class="store" x="8" y="503" width="18" height="13" rx="2"/>
+        <text x="33" y="514" class="legend-text">Duty-free store</text>
+
+        <rect class="store-benefit" x="192" y="503" width="18" height="13" rx="2"/>
+        <text x="217" y="514" class="legend-text">Benefit Cosmetics (approx.)</text>
+
+        <g class="immig"><circle cx="456" cy="510" r="9"/><text x="456" y="514" text-anchor="middle">3</text></g>
+        <text x="473" y="514" class="legend-text">Immigration</text>
+
+        <rect x="618" y="503" width="18" height="13" rx="2" fill="var(--accent)" opacity="0.38"/>
+        <text x="643" y="514" class="legend-text">Great Hall (duty-free hub)</text>
+
+      </svg>
+    </figure>
+  </main>
+
+  <!-- Mode toggle -->
+  <div class="mode-toggle" role="tablist" aria-label="View mode">
+    <button class="mode-btn is-active" data-mode="default" type="button">
+      <span class="mode-indicator">[<i class="mode-dot"></i>]</span>
+      <span class="mode-label">Default</span>
+    </button>
+    <button class="mode-btn" data-mode="structure" type="button">
+      <span class="mode-indicator">[<i class="mode-dot"></i>]</span>
+      <span class="mode-label">Structure</span>
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      var body = document.body;
+      var btns = document.querySelectorAll('.mode-btn');
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var mode = btn.getAttribute('data-mode');
+          btns.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+          body.classList.toggle('structure-mode', mode === 'structure');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

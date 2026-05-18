@@ -14,7 +14,7 @@ Product Designer at [Techequity AI](https://techequity.ai), where I most recentl
 ### Earlier
 
 - Zespri — Data behind 80% of all kiwis. (Yes, the fruit.)
-- Benefit Cosmetics — Marketing across 14 travel retail markets.
+- **[Benefit Cosmetics](benefit-cosmetics-map.html)** — Marketing across 14 travel retail markets.
 - L'Oréal — Marketing on Valentino Beauty's first Korea launch.
 
 ---
