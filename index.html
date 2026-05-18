@@ -224,7 +224,8 @@
           html += '<ul class="items">';
           s.items.forEach(function (it) {
             var titleClass = 'item-title' + (it.earlier ? ' earlier-item' : '');
-            var attr = (it.url === '#') ? '' : ' target="_blank" rel="noopener"';
+            var isInternal = it.url === '#' || it.url.endsWith('.html') || it.url.startsWith('/');
+            var attr = isInternal ? '' : ' target="_blank" rel="noopener"';
             html += '<li><a href="' + it.url + '"' + attr + '">';
             html += '<span class="' + titleClass + '">' + esc(it.title) + '</span>';
             html += '<span class="item-desc">' + esc(it.desc) + '</span>';

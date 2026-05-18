@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — Seohyeon Kimkenny</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <main class="container">
+    <section class="intro">
+      <h1>Writing</h1>
+      <p class="tagline"><a href="index.html">← Back</a></p>
+    </section>
+
+    <hr />
+
+    <ul class="writing-list">
+      <li><a href="#">
+        <span class="writing-title">Essay One</span>
+        <span class="writing-arrow">↗</span>
+      </a></li>
+      <li><a href="#">
+        <span class="writing-title">Essay Two</span>
+        <span class="writing-arrow">↗</span>
+      </a></li>
+      <li><a href="#">
+        <span class="writing-title">Essay Three</span>
+        <span class="writing-arrow">↗</span>
+      </a></li>
+      <li><a href="#">
+        <span class="writing-title">Essay Four</span>
+        <span class="writing-arrow">↗</span>
+      </a></li>
+      <li><a href="#">
+        <span class="writing-title">Essay Five</span>
+        <span class="writing-arrow">↗</span>
+      </a></li>
+    </ul>
+  </main>
+
+  <!-- Mode toggle -->
+  <div class="mode-toggle" role="tablist" aria-label="View mode">
+    <button class="mode-btn is-active" data-mode="default" type="button">
+      <span class="mode-indicator">[<i class="mode-dot"></i>]</span>
+      <span class="mode-label">Default</span>
+    </button>
+    <button class="mode-btn" data-mode="structure" type="button">
+      <span class="mode-indicator">[<i class="mode-dot"></i>]</span>
+      <span class="mode-label">Structure</span>
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      var body = document.body;
+      var btns = document.querySelectorAll('.mode-btn');
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var mode = btn.getAttribute('data-mode');
+          btns.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+          body.classList.toggle('structure-mode', mode === 'structure');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

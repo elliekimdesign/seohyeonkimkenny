@@ -28,7 +28,7 @@ Product Designer at [Techequity AI](https://techequity.ai), where I most recentl
 
 ## 03 Writing
 
-- **[Essay Title](#)** — A short essay about something I've been thinking about.
+- **[Essay Title](writing.html)** — A short essay about something I've been thinking about.
 - **[Another Piece](#)** — Notes from a recent project.
 
 ---

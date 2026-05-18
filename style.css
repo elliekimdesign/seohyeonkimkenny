@@ -2,7 +2,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #fdfdf8;
+  --bg: #fffffa;
   --ink: #1f1b18;
   --muted: #b3b3b3;
   --accent: #6ea5c8;
@@ -10,7 +10,7 @@
   --line-soft: rgba(0, 0, 0, 0.015);
   --check-tint: rgba(0, 0, 0, 0.01);
   --line-pink: rgba(230, 75, 130, 0.14);
-  --line-sky: rgba(110, 165, 200, 0.24);
+  --line-sky: rgba(110, 165, 200, 0.34);
   --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
   --serif: 'Instrument Serif', Georgia, serif;
   --display: 'Boldonse', 'JetBrains Mono', monospace;
@@ -300,6 +300,59 @@ hr {
 }
 
 .contact-links a:hover { color: var(--accent); }
+
+/* ---------- writing list: serif essay titles with arrow + dividers ---------- */
+.writing-list {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.writing-list li {
+  border-top: 1px solid rgba(31, 27, 24, 0.18);
+}
+
+.writing-list li:last-child {
+  border-bottom: 1px solid rgba(31, 27, 24, 0.18);
+}
+
+.writing-list a {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.writing-list a:hover { color: var(--accent); }
+
+.writing-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: 0;
+  flex: 1;
+}
+
+.writing-arrow {
+  font-family: var(--mono);
+  font-size: 18px;
+  line-height: 1.2;
+  flex-shrink: 0;
+  padding-top: 6px;
+  transition: transform 0.2s ease;
+}
+
+.writing-list a:hover .writing-arrow {
+  transform: translate(2px, -2px);
+}
 
 /* ---------- mode toggle: minimal radio-style (Design / Structure) ---------- */
 .mode-toggle {
