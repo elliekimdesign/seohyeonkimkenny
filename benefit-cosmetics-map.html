@@ -9,82 +9,212 @@
   <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ── page-scoped overrides ── */
-    /* let the map break wider than the 840 px content column */
-    .container { max-width: min(calc(100vw - 48px), 1200px); }
+    /* ════════════════════════════════════════════════════════════
+       benefit-cosmetics-map — full-screen editorial poster
+       (Image #14 reference: one screen, corners as anchors)
+       ════════════════════════════════════════════════════════════ */
 
-    .sketch-wrap {
-      grid-column: 1 / -1;
-      padding: 0 0 0 0;
-      margin: 0;
+    /* bundled local font — works for everyone (this page only) */
+    @font-face {
+      font-family: "Overused Grotesk";
+      src: url("fonts/OverusedGrotesk-VF.woff2") format("woff2-variations"),
+           url("fonts/OverusedGrotesk-VF.woff") format("woff-variations");
+      font-weight: 300 900;
+      font-display: swap;
+      font-style: normal;
     }
-    .sketch-caption {
-      grid-column: 1 / -1;
-      padding: 0 24px;
-      margin-bottom: 28px;
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 1.7;
-      color: var(--muted);
+
+    /* page-local type token: Overused Grotesk, mono as fallback */
+    .poster, .poster * {
+      --type: "Overused Grotesk", var(--mono);
     }
-    .sketch-wrap svg {
+
+    .grid-bg { display: none !important; }
+
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      overflow-x: hidden;
+      padding: 0;          /* override shared 78px top padding */
+      display: block;      /* override shared flex centering   */
+      min-height: 0;
+    }
+    .container { max-width: none; width: 100%; margin: 0; padding: 0; display: block; }
+
+    .poster {
+      position: relative;
+      min-height: 100vh;
       width: 100%;
-      max-width: 100%;
+      padding: clamp(20px, 2.5vw, 36px) clamp(28px, 4vw, 72px) clamp(28px, 3.5vw, 56px);
+      font-family: var(--type);
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(20px, 3vw, 40px);
+    }
+
+    /* TOP-LEFT — back link, first thing on the page */
+    .topnav {
+      font-family: var(--type);
+      font-size: clamp(11px, 0.9vw, 13px);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .topnav a {
+      color: var(--ink);
+      text-decoration: none;
+      opacity: 0.55;
+      transition: opacity 0.15s;
+    }
+    .topnav a:hover { opacity: 1; }
+
+    /* title + the story, on their own lines */
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2vw, 28px);
+    }
+
+    .lede { max-width: 1100px; }
+    .lede .kicker {
+      display: block;
+      font-size: clamp(10px, 0.8vw, 12px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .lede h1 {
+      font-family: var(--type);
+      font-weight: 400;
+      font-size: clamp(13px, 1.02vw, 15px);
+      line-height: 1.7;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin: 0 0 clamp(20px, 3vw, 32px);
+      max-width: 92ch;
+    }
+    .lede p {
+      font-size: clamp(13px, 1.02vw, 15px);
+      line-height: 1.7;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin: 0 0 1.1em;
+      max-width: 92ch;
+    }
+    .lede p:last-child { margin-bottom: 0; }
+    .lede strong { font-weight: 700; }
+    .lede .accent { color: var(--accent); }
+
+    /* MIDDLE — small map, pushed to the bottom-right quadrant */
+    .stage {
+      width: 100%;
+      max-width: 760px;
+      margin: auto 0 0 auto;   /* top:auto pushes it down, left:auto pushes it right */
+    }
+    .stage svg {
+      width: 100%;
       height: auto;
       display: block;
+      max-height: 52vh;
     }
 
-    /* ── sketch element styles ── */
-    .sketch-wrap .floor          { fill: var(--ink);    opacity: 0.07; stroke: none; }
-    .sketch-wrap .store          { fill: var(--ink);    opacity: 0.22; stroke: none; }
-    .sketch-wrap .store-benefit  { fill: var(--accent); opacity: 0.85; stroke: none; }
-    .sketch-wrap .great-hall     { fill: var(--accent); opacity: 0.10; stroke: none; }
+    /* BOTTOM — minimal metadata + back link on one line */
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: clamp(20px, 4vw, 56px);
+      font-size: clamp(10px, 0.82vw, 12px);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: auto;
+    }
+    .footer a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .footer a:hover { opacity: 0.6; }
 
-    .sketch-wrap .zone-label {
-      font-family: var(--mono); font-size: 15px; font-weight: 700; fill: var(--ink);
+    /* ── ICN T1 schematic — all grey, only Benefit in accent ── */
+    .stage {
+      --band:      color-mix(in srgb, var(--ink) 9%,  transparent);
+      --band-deep: color-mix(in srgb, var(--ink) 16%, transparent);
+      --store-fill:color-mix(in srgb, var(--ink) 22%, transparent);
+      --line-grey: color-mix(in srgb, var(--ink) 38%, transparent);
     }
-    .sketch-wrap .zone-sub {
-      font-family: var(--mono); font-size: 11px; fill: var(--muted);
+    /* terminal band = one thick rounded stroke */
+    .stage .band {
+      fill: none; stroke: var(--band);
+      stroke-width: 64; stroke-linecap: round; stroke-linejoin: round;
     }
-    .sketch-wrap .gate-big {
-      font-family: var(--mono); font-size: 17px; font-weight: 700;
-      fill: var(--ink); opacity: 0.50;
+    .stage .gate-stub {
+      stroke: var(--band); stroke-width: 18; stroke-linecap: round;
     }
-    .sketch-wrap .cat-label {
-      font-family: var(--mono); font-size: 9px; font-weight: 700;
-      letter-spacing: 0.4px; fill: var(--accent); opacity: 0.70;
+    .stage .immig {
+      fill: none; stroke: var(--band-deep);
+      stroke-width: 40; stroke-linecap: round; stroke-linejoin: round;
     }
-    .sketch-wrap .benefit-tag {
-      font-family: var(--mono); font-size: 11px; font-weight: 700;
-      fill: var(--accent);
+    .stage .store { fill: var(--store-fill); }
+    .stage .store-bnft { fill: var(--accent); }
+
+    .stage .tie { stroke: var(--line-grey); stroke-width: 1; fill: none; }
+    .stage .tie-dot { fill: var(--line-grey); }
+    .stage .tie-b { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+
+    .stage .imm-num   { fill: color-mix(in srgb, var(--ink) 46%, transparent); }
+    .stage .imm-text {
+      font-family: var(--type); font-size: 14px; font-weight: 700; fill: #fff;
     }
-    .sketch-wrap .immig circle {
-      fill: var(--ink); opacity: 0.55;
+    .stage .info-circle { fill: color-mix(in srgb, var(--ink) 46%, transparent); }
+    .stage .info-text {
+      font-family: var(--type); font-size: 15px; font-weight: 700; fill: #fff;
     }
-    .sketch-wrap .immig text {
-      font-family: var(--mono); font-size: 10px; font-weight: 700;
-      fill: var(--bg);
+
+    .stage .store-label {
+      font-family: var(--type); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.02em; fill: var(--ink); opacity: 0.6;
     }
-    .sketch-wrap .immig-label {
-      font-family: var(--mono); font-size: 9px; fill: var(--muted);
+    .stage .gate-cap {
+      font-family: var(--type); font-size: 12px; font-weight: 700;
+      fill: var(--ink); opacity: 0.42;
     }
-    .sketch-wrap .link-line {
-      stroke: var(--ink); stroke-width: 1;
-      stroke-dasharray: 4 4; opacity: 0.40;
+    .stage .bnft-label {
+      font-family: var(--type); font-size: 13px; font-weight: 700;
+      letter-spacing: 0.1em; fill: var(--accent);
     }
-    .sketch-wrap .divider-line {
-      stroke: var(--ink); stroke-width: 0.75;
-      stroke-dasharray: 3 5; opacity: 0.25;
+    .stage .imm-cap {
+      font-family: var(--type); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.16em; fill: var(--ink); opacity: 0.4;
     }
-    .sketch-wrap .wayfind {
-      font-family: var(--mono); font-size: 9.5px;
-      fill: var(--muted); letter-spacing: 0.4px;
+    .stage .edge-cap {
+      font-family: var(--type); font-size: 14px; font-weight: 700;
+      letter-spacing: 0.06em; fill: var(--ink); opacity: 0.38;
     }
-    .sketch-wrap .legend-text {
-      font-family: var(--mono); font-size: 11.5px; fill: var(--ink);
+    .map-caption {
+      width: 100%;
+      max-width: 760px;
+      margin: 8px 0 0 auto;   /* match .stage: hug the right edge */
+      text-align: right;
+      font-family: var(--type);
+      font-size: clamp(10px, 0.82vw, 12px);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .sketch-wrap .term-rule {
-      stroke: var(--ink); stroke-width: 1; opacity: 0.18;
+
+    @media (max-width: 760px) {
+      .lede { max-width: none; }
+      .lede h1 { white-space: normal; }
+      .lede p { max-width: none; }
+      .stage svg { max-height: none; }
     }
   </style>
 </head>
@@ -92,249 +222,156 @@
   <div class="grid-bg"></div>
 
   <main class="container">
-    <section class="intro">
-      <h1>Benefit Cosmetics — ICN Duty-Free</h1>
-      <p class="tagline"><a href="index.html">← Back</a></p>
+    <section class="poster">
+
+      <!-- TOP-LEFT — back link -->
+      <nav class="topnav">
+        <a href="index.html">← Back to index</a>
+      </nav>
+
+      <!-- TOP — title + story on their own lines -->
+      <div class="content">
+        <div class="lede">
+          <span class="kicker">Earlier</span>
+          <h1>
+            <strong>Brand Manager at Benefit Cosmetics</strong>, responsible
+            for launching 20+ SKUs and running promotions across international
+            airports and downtown duty-free stores.
+          </h1>
+          <p>
+            During one of our store visits at Incheon Airport, a woman and her
+            teenage daughter walked in saying they still had about 40 minutes
+            before boarding. They quickly scanned the store, tested only a
+            couple of products, then naturally followed our visual cues to the
+            gift-set corner and finished their purchase in a short amount of
+            time. Watching scenes like this taught me how travelers actually
+            behave under time pressure: they skim instead of read, follow
+            sightlines instead of floor plans, and make decisions in seconds
+            rather than minutes. That understanding now directly shapes how I
+            design information architecture and user flows as a
+            <span class="accent">design engineer</span>, so users can find
+            their way through a digital product as intuitively as those
+            passengers found their way through our duty-free store.
+          </p>
+        </div>
+      </div>
+
+      <!-- MIDDLE — detailed ICN T1 schematic (grey, Benefit-focused) -->
+      <div class="stage">
+        <svg viewBox="640 96 1040 492" xmlns="http://www.w3.org/2000/svg" role="img"
+             aria-label="Schematic of Incheon Airport Terminal 1 duty-free: a grey curved concourse band with two arms rising at each side, boarding-gate stubs with gate numbers, a lower grey immigration arc with numbered circles one to six, store blocks with category leader-line labels, an information point, and the Benefit Cosmetics counter highlighted in accent colour.">
+
+        <g transform="translate(560 0)">
+
+          <!-- ── terminal band: arch + four arms (one grey gesture) ── -->
+          <path class="band" d="M 230 470 L 300 150"/>
+          <path class="band" d="M 230 470 L 120 250"/>
+          <path class="band" d="M 970 470 L 900 150"/>
+          <path class="band" d="M 970 470 L 1080 250"/>
+          <path class="band" d="
+            M 150 540
+            C 150 540, 280 360, 600 360
+            C 920 360, 1050 540, 1050 540"/>
+
+          <!-- gate stubs poking off the arch (raised above the store row) -->
+          <g class="gate-stub">
+            <line x1="330" y1="350" x2="330" y2="300"/>
+            <line x1="460" y1="320" x2="460" y2="270"/>
+            <line x1="600" y1="310" x2="600" y2="260"/>
+            <line x1="740" y1="320" x2="740" y2="270"/>
+            <line x1="870" y1="350" x2="870" y2="300"/>
+          </g>
+          <text x="330" y="284" class="gate-cap" text-anchor="middle">42</text>
+          <text x="330" y="298" class="gate-cap" text-anchor="middle">Gate</text>
+          <text x="460" y="254" class="gate-cap" text-anchor="middle">28</text>
+          <text x="460" y="268" class="gate-cap" text-anchor="middle">Gate</text>
+          <text x="600" y="244" class="gate-cap" text-anchor="middle">26</text>
+          <text x="600" y="258" class="gate-cap" text-anchor="middle">Gate</text>
+
+          <!-- ── lower immigration arc + numbered circles 1–6 ── -->
+          <path class="immig" d="
+            M 250 560
+            C 250 560, 360 452, 600 452
+            C 840 452, 950 560, 950 560"/>
+          <g><circle class="imm-num" cx="320" cy="520" r="17"/><text x="320" y="525" class="imm-text" text-anchor="middle">6</text></g>
+          <g><circle class="imm-num" cx="420" cy="486" r="17"/><text x="420" y="491" class="imm-text" text-anchor="middle">5</text></g>
+          <g><circle class="imm-num" cx="520" cy="468" r="17"/><text x="520" y="473" class="imm-text" text-anchor="middle">4</text></g>
+          <g><circle class="imm-num" cx="680" cy="468" r="17"/><text x="680" y="473" class="imm-text" text-anchor="middle">3</text></g>
+          <g><circle class="imm-num" cx="780" cy="486" r="17"/><text x="780" y="491" class="imm-text" text-anchor="middle">2</text></g>
+          <g><circle class="imm-num" cx="880" cy="520" r="17"/><text x="880" y="525" class="imm-text" text-anchor="middle">1</text></g>
+          <text x="600" y="552" class="imm-cap" text-anchor="middle">IMMIGRATION</text>
+
+          <!-- WEST / EAST -->
+          <text x="150" y="500" class="edge-cap" text-anchor="middle">WEST</text>
+          <text x="1050" y="500" class="edge-cap" text-anchor="middle">EAST</text>
+
+          <!-- ── store blocks on the band + leader-line labels ── -->
+          <!-- Souvenir & Food (west, low) -->
+          <rect class="store" x="270" y="408" width="44" height="26" rx="3" transform="rotate(-22 292 421)"/>
+          <path class="tie" d="M 268 420 L 180 420"/>
+          <circle class="tie-dot" cx="268" cy="420" r="3"/>
+          <text x="172" y="416" class="store-label" text-anchor="end">Souvenir</text>
+          <text x="172" y="432" class="store-label" text-anchor="end">&amp; Food</text>
+
+          <!-- Luxury Fashion (west) -->
+          <rect class="store" x="318" y="384" width="40" height="30" rx="3" transform="rotate(-22 338 399)"/>
+          <path class="tie" d="M 314 396 L 200 396"/>
+          <circle class="tie-dot" cx="314" cy="396" r="3"/>
+          <text x="192" y="400" class="store-label" text-anchor="end">Luxury Fashion</text>
+
+          <!-- Electronics -->
+          <rect class="store" x="368" y="356" width="32" height="28" rx="3" transform="rotate(-16 384 370)"/>
+          <path class="tie" d="M 378 356 L 378 246 L 256 246"/>
+          <circle class="tie-dot" cx="378" cy="356" r="3"/>
+          <text x="248" y="250" class="store-label" text-anchor="end">Electronics</text>
+
+          <!-- Fashion Accessory / Sunglasses -->
+          <rect class="store" x="430" y="346" width="40" height="28" rx="3" transform="rotate(-8 450 360)"/>
+          <path class="tie" d="M 450 346 L 450 200 L 360 200"/>
+          <circle class="tie-dot" cx="450" cy="346" r="3"/>
+          <text x="352" y="196" class="store-label" text-anchor="end">Fashion Accessory /</text>
+          <text x="352" y="212" class="store-label" text-anchor="end">Sunglasses</text>
+
+          <!-- Luxury Fashion (centre, below) -->
+          <rect class="store" x="540" y="384" width="52" height="30" rx="3"/>
+          <path class="tie" d="M 566 414 L 566 470"/>
+          <circle class="tie-dot" cx="566" cy="414" r="3"/>
+          <text x="566" y="490" class="store-label" text-anchor="middle">Luxury Fashion</text>
+
+          <!-- Luxury Fashion (right cluster — 2 blocks) -->
+          <rect class="store" x="700" y="356" width="46" height="28" rx="3" transform="rotate(10 723 370)"/>
+          <rect class="store" x="772" y="368" width="46" height="28" rx="3" transform="rotate(16 795 382)"/>
+          <path class="tie" d="M 723 356 L 723 220 L 770 220"/>
+          <path class="tie" d="M 795 368 L 795 250 L 770 250 L 770 220"/>
+          <circle class="tie-dot" cx="723" cy="356" r="3"/>
+          <circle class="tie-dot" cx="795" cy="368" r="3"/>
+          <text x="778" y="210" class="store-label">Luxury Fashion</text>
+
+          <!-- Information ⓘ — set apart so it doesn't collide with Benefit -->
+          <g><circle class="info-circle" cx="640" cy="392" r="15"/><text x="640" y="397" class="info-text" text-anchor="middle">i</text></g>
+          <text x="640" y="430" class="store-label" text-anchor="middle">Information</text>
+
+          <!-- ── Benefit — one counter, the only accent element ── -->
+          <rect class="store-bnft" x="476" y="350" width="46" height="30" rx="3" transform="rotate(-3 499 365)"/>
+          <path class="tie-b" d="M 499 350 L 499 168"/>
+          <circle cx="499" cy="350" r="3" fill="var(--accent)"/>
+          <text x="499" y="150" class="bnft-label" text-anchor="middle">BENEFIT</text>
+          <text x="499" y="166" class="store-label" text-anchor="middle" fill="var(--accent)" opacity="1">Cosmetics &amp; Perfume</text>
+
+        </g>
+        </svg>
+      </div>
+
+      <!-- map caption (HTML, right-aligned under the map) -->
+      <p class="map-caption">INCHEON INTERNATIONAL AIRPORT · TERMINAL 1</p>
+
+      <!-- BOTTOM — minimal metadata -->
+      <footer class="footer">
+        <span>Benefit Cosmetics Travel Retail</span>
+      </footer>
+
     </section>
-
-    <hr />
-
-    <p class="sketch-caption">
-      Floor-plan overview of Incheon Airport (ICN) duty-free —
-      <strong>Terminal 1</strong> (East Hall · Gates 1–28, West Hall · Gates 29–50) and
-      <strong>Terminal 2</strong> (Great Hall hub · Gates 248–253, west wing to Gate 230, east wing to Gate 270).
-      Store blocks labelled by category; <strong>Benefit Cosmetics</strong> counters are highlighted.
-      T2 is a separate terminal connected via the IAT Concourse shuttle (≈ 7–10 min). Benefit positions are approximate — illustrative, not an official wayfinding map.
-    </p>
-
-    <!-- ═══════════════════════════════════════════════════════════════════════ -->
-    <!--   SINGLE PANORAMIC MAP — NO CAROUSEL                                   -->
-    <!-- ═══════════════════════════════════════════════════════════════════════ -->
-    <figure class="sketch-wrap">
-      <svg viewBox="0 0 1060 530" xmlns="http://www.w3.org/2000/svg" role="img"
-           aria-label="Panoramic floor-plan of Incheon Airport ICN duty-free: Terminal 1 (left) with East Hall gates 1-28 and West Hall gates 29-50, and Terminal 2 (right) with the Great Hall hub near gates 248-253 and wings to gates 230 and 270. Benefit Cosmetics counters are highlighted in both terminals.">
-
-        <!-- ══════════════ SECTION HEADER LABELS ══════════════ -->
-        <text x="330" y="19" class="zone-label" text-anchor="middle">Terminal 1</text>
-        <text x="330" y="35" class="zone-sub" text-anchor="middle">Departure Level 3F · East Hall (Gates 1–28) + West Hall (Gates 29–50)</text>
-
-        <text x="888" y="19" class="zone-label" text-anchor="middle">Terminal 2</text>
-        <text x="888" y="35" class="zone-sub" text-anchor="middle">Departure Level 3F · Gates 230–270 · Great Hall hub near 248–253</text>
-
-        <!-- ══════════════ T1 FLOOR ══════════════ -->
-        <rect class="floor" x="8" y="108" width="647" height="310" rx="8"/>
-
-        <!-- T1 hall-zone dividers (East / Central / West) -->
-        <line class="divider-line" x1="227" y1="108" x2="227" y2="418"/>
-        <line class="divider-line" x1="440" y1="108" x2="440" y2="418"/>
-
-        <!-- ── T1 NORTH-WALL STORES (sticking above floor, y=68–108) ── -->
-        <!-- Liquor & Tobacco East -->
-        <rect class="store" x="13" y="68" width="66" height="40" rx="2"/>
-        <text x="46" y="62" class="cat-label" text-anchor="middle">LIQUOR · TOBACCO</text>
-
-        <!-- Cosmetics & Perfume East — Benefit counter here -->
-        <rect class="store"         x="86"  y="68" width="76" height="40" rx="2"/>
-        <rect class="store-benefit" x="91"  y="70" width="40" height="36" rx="2"/>
-        <text x="124" y="62" class="cat-label" text-anchor="middle">COSMETICS · PERFUME</text>
-
-        <!-- Electronics -->
-        <rect class="store" x="169" y="68" width="54" height="40" rx="2"/>
-        <text x="196" y="62" class="cat-label" text-anchor="middle">ELECTRONICS</text>
-
-        <!-- Central Skincare & Beauty — Benefit counter here -->
-        <rect class="store"         x="234" y="68" width="98" height="40" rx="2"/>
-        <rect class="store-benefit" x="240" y="70" width="52" height="36" rx="2"/>
-        <text x="283" y="62" class="cat-label" text-anchor="middle">SKINCARE · BEAUTY</text>
-
-        <!-- Fashion Central -->
-        <rect class="store" x="340" y="68" width="72" height="40" rx="2"/>
-        <text x="376" y="62" class="cat-label" text-anchor="middle">FASHION</text>
-
-        <!-- Watch & Jewelry -->
-        <rect class="store" x="420" y="68" width="72" height="40" rx="2"/>
-        <text x="456" y="62" class="cat-label" text-anchor="middle">WATCH · JEWELRY</text>
-
-        <!-- Character & Food West -->
-        <rect class="store" x="500" y="68" width="72" height="40" rx="2"/>
-        <text x="536" y="62" class="cat-label" text-anchor="middle">CHARACTER · FOOD</text>
-
-        <!-- Liquor & Tobacco West -->
-        <rect class="store" x="580" y="68" width="70" height="40" rx="2"/>
-        <text x="615" y="62" class="cat-label" text-anchor="middle">LIQUOR · TOBACCO</text>
-
-        <!-- Benefit labels below north stores -->
-        <text x="111" y="122" class="benefit-tag" text-anchor="middle">Benefit</text>
-        <text x="266" y="122" class="benefit-tag" text-anchor="middle">Benefit</text>
-
-        <!-- ── T1 CORRIDOR — gate numbers, zone labels, immigration ── -->
-        <text x="28"  y="215" class="gate-big">1G</text>
-        <text x="590" y="215" class="gate-big">50G</text>
-
-        <text x="113" y="278" class="zone-sub"  text-anchor="middle">East Hall</text>
-        <text x="113" y="293" class="wayfind"   text-anchor="middle">Gates 1–28</text>
-        <text x="333" y="278" class="zone-sub"  text-anchor="middle">Central Duty-Free</text>
-        <text x="547" y="278" class="zone-sub"  text-anchor="middle">West Hall</text>
-        <text x="547" y="293" class="wayfind"   text-anchor="middle">Gates 29–50</text>
-
-        <g class="immig">
-          <circle cx="100" cy="330" r="15"/>
-          <text x="100" y="334" text-anchor="middle">3</text>
-        </g>
-        <text x="100" y="353" class="immig-label" text-anchor="middle">출국심사</text>
-        <text x="100" y="364" class="immig-label" text-anchor="middle">Immigration</text>
-
-        <g class="immig">
-          <circle cx="553" cy="330" r="15"/>
-          <text x="553" y="334" text-anchor="middle">2</text>
-        </g>
-        <text x="553" y="353" class="immig-label" text-anchor="middle">출국심사</text>
-        <text x="553" y="364" class="immig-label" text-anchor="middle">Immigration</text>
-
-        <!-- ── T1 SOUTH-WALL STORES (sticking below floor, y=415–455) ── -->
-        <!-- Food & Café East -->
-        <rect class="store" x="13"  y="415" width="72" height="40" rx="2"/>
-        <text x="49"  y="477" class="cat-label" text-anchor="middle">FOOD · CAFÉ</text>
-
-        <!-- Character & Gifts -->
-        <rect class="store" x="93"  y="415" width="70" height="40" rx="2"/>
-        <text x="128" y="477" class="cat-label" text-anchor="middle">CHARACTER · GIFTS</text>
-
-        <!-- Fashion South -->
-        <rect class="store" x="171" y="415" width="64" height="40" rx="2"/>
-        <text x="203" y="477" class="cat-label" text-anchor="middle">FASHION</text>
-
-        <!-- Electronics South -->
-        <rect class="store" x="243" y="415" width="66" height="40" rx="2"/>
-        <text x="276" y="477" class="cat-label" text-anchor="middle">ELECTRONICS</text>
-
-        <!-- Beauty & Cosmetics Central South — Benefit counter here -->
-        <rect class="store"         x="317" y="415" width="78" height="40" rx="2"/>
-        <rect class="store-benefit" x="323" y="417" width="42" height="36" rx="2"/>
-        <text x="344" y="462" class="benefit-tag" text-anchor="middle">Benefit</text>
-        <text x="356" y="477" class="cat-label" text-anchor="middle">BEAUTY · COSMETICS</text>
-
-        <!-- Fashion & Accessories West -->
-        <rect class="store" x="403" y="415" width="70" height="40" rx="2"/>
-        <text x="438" y="477" class="cat-label" text-anchor="middle">FASHION · ACC.</text>
-
-        <!-- Food & Liquor West -->
-        <rect class="store" x="481" y="415" width="72" height="40" rx="2"/>
-        <text x="517" y="477" class="cat-label" text-anchor="middle">FOOD · LIQUOR</text>
-
-        <!-- Character West -->
-        <rect class="store" x="561" y="415" width="88" height="40" rx="2"/>
-        <text x="605" y="477" class="cat-label" text-anchor="middle">CHARACTER · SUNGLASSES</text>
-
-        <!-- ══════════════ IAT SHUTTLE CONNECTION ══════════════ -->
-        <line class="link-line" x1="660" y1="270" x2="714" y2="270"/>
-        <text x="687" y="258" class="zone-sub"  text-anchor="middle">IAT Shuttle</text>
-        <text x="687" y="272" class="wayfind"   text-anchor="middle">via Concourse</text>
-        <text x="687" y="285" class="wayfind"   text-anchor="middle">≈ 7–10 min</text>
-
-        <!-- ══════════════ T2 FLOOR ══════════════ -->
-        <!-- Full floor rectangle -->
-        <rect class="floor" x="720" y="108" width="333" height="310" rx="8"/>
-        <!-- Great Hall subtle accent band (central hub near 248-253) -->
-        <rect class="great-hall" x="840" y="108" width="130" height="310" rx="4"/>
-
-        <!-- ── T2 NORTH-WALL STORES (y=68–108) ── -->
-        <!-- Liquor & Tobacco West wing -->
-        <rect class="store" x="725" y="68" width="66" height="40" rx="2"/>
-        <text x="758" y="62" class="cat-label" text-anchor="middle">LIQUOR · TOBACCO</text>
-
-        <!-- Fashion (west of hub) -->
-        <rect class="store" x="799" y="68" width="58" height="40" rx="2"/>
-        <text x="828" y="62" class="cat-label" text-anchor="middle">FASHION</text>
-
-        <!-- Cosmetics & Beauty — Great Hall — Benefit counter here -->
-        <rect class="store"         x="865" y="68" width="88" height="40" rx="2"/>
-        <rect class="store-benefit" x="871" y="70" width="50" height="36" rx="2"/>
-        <text x="909" y="62" class="cat-label" text-anchor="middle">COSMETICS · BEAUTY</text>
-
-        <!-- Watch & Electronics East wing -->
-        <rect class="store" x="961" y="68" width="66" height="40" rx="2"/>
-        <text x="994" y="62" class="cat-label" text-anchor="middle">WATCH · ELECTRONICS</text>
-
-        <!-- Benefit label below T2 north store -->
-        <text x="896" y="122" class="benefit-tag" text-anchor="middle">Benefit</text>
-
-        <!-- ── T2 CORRIDOR ── -->
-        <text x="726" y="215" class="gate-big">230G</text>
-        <text x="950" y="215" class="gate-big">270G</text>
-
-        <text x="905" y="278" class="zone-sub"  text-anchor="middle">Great Hall</text>
-        <text x="905" y="293" class="wayfind"   text-anchor="middle">Gates 248–253</text>
-
-        <g class="immig">
-          <circle cx="758" cy="330" r="15"/>
-          <text x="758" y="334" text-anchor="middle">T</text>
-        </g>
-        <text x="758" y="353" class="immig-label" text-anchor="middle">출국심사</text>
-        <text x="758" y="364" class="immig-label" text-anchor="middle">Immigration</text>
-
-        <!-- ── T2 SOUTH-WALL STORES (y=415–455) ── -->
-        <!-- Food & Character West -->
-        <rect class="store" x="725" y="415" width="80" height="40" rx="2"/>
-        <text x="765" y="477" class="cat-label" text-anchor="middle">FOOD · CHARACTER</text>
-
-        <!-- Fashion South -->
-        <rect class="store" x="813" y="415" width="62" height="40" rx="2"/>
-        <text x="844" y="477" class="cat-label" text-anchor="middle">FASHION</text>
-
-        <!-- Beauty & Skincare — Great Hall South — Benefit counter here -->
-        <rect class="store"         x="883" y="415" width="82" height="40" rx="2"/>
-        <rect class="store-benefit" x="889" y="417" width="46" height="36" rx="2"/>
-        <text x="912" y="462" class="benefit-tag" text-anchor="middle">Benefit</text>
-        <text x="924" y="477" class="cat-label" text-anchor="middle">BEAUTY · SKINCARE</text>
-
-        <!-- Electronics East -->
-        <rect class="store" x="973" y="415" width="66" height="40" rx="2"/>
-        <text x="1006" y="477" class="cat-label" text-anchor="middle">ELECTRONICS</text>
-
-        <!-- ══════════════ LEGEND ══════════════ -->
-        <line class="term-rule" x1="8" y1="492" x2="1052" y2="492"/>
-
-        <rect class="store" x="8" y="503" width="18" height="13" rx="2"/>
-        <text x="33" y="514" class="legend-text">Duty-free store</text>
-
-        <rect class="store-benefit" x="192" y="503" width="18" height="13" rx="2"/>
-        <text x="217" y="514" class="legend-text">Benefit Cosmetics (approx.)</text>
-
-        <g class="immig"><circle cx="456" cy="510" r="9"/><text x="456" y="514" text-anchor="middle">3</text></g>
-        <text x="473" y="514" class="legend-text">Immigration</text>
-
-        <rect x="618" y="503" width="18" height="13" rx="2" fill="var(--accent)" opacity="0.38"/>
-        <text x="643" y="514" class="legend-text">Great Hall (duty-free hub)</text>
-
-      </svg>
-    </figure>
   </main>
 
-  <!-- Mode toggle -->
-  <div class="mode-toggle" role="tablist" aria-label="View mode">
-    <button class="mode-btn is-active" data-mode="default" type="button">
-      <span class="mode-indicator">[<i class="mode-dot"></i>]</span>
-      <span class="mode-label">Default</span>
-    </button>
-    <button class="mode-btn" data-mode="structure" type="button">
-      <span class="mode-indicator">[<i class="mode-dot"></i>]</span>
-      <span class="mode-label">Structure</span>
-    </button>
-  </div>
-
-  <script>
-    (function () {
-      var body = document.body;
-      var btns = document.querySelectorAll('.mode-btn');
-      btns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var mode = btn.getAttribute('data-mode');
-          btns.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
-          body.classList.toggle('structure-mode', mode === 'structure');
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
