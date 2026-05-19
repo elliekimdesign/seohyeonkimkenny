@@ -1,6 +1,6 @@
 # Seohyeon Kimkenny
 
-Product Designer at [Techequity AI](https://techequity.ai), where I most recently redesigned and built the new Techequity AI homepage.
+I design and engineer interfaces at [Techequity AI](https://techequity.ai), most recently redesigning and shipping the new homepage.
 
 ---
 
@@ -11,10 +11,10 @@ Product Designer at [Techequity AI](https://techequity.ai), where I most recentl
 - **[Lingoleap AI](#)** — Built the design system.
 - **[Shades](#)** — Designed in-house game features.
 
-### Earlier
+### Previously
 
 - Zespri — Data behind 80% of all kiwis. (Yes, the fruit.)
-- **[Benefit Cosmetics](benefit-cosmetics-map.html)** — Brand Manager across 15 domestic duty-free locations in Korea.
+- **[Benefit Cosmetics](benefit-cosmetics-map.html)** — Launched 20+ products across Korean duty-free stores.
 - L'Oréal — Marketing on Valentino Beauty's first Korea launch.
 
 ---

@@ -45,12 +45,12 @@
       position: relative;
       min-height: 100vh;
       width: 100%;
-      padding: clamp(20px, 2.5vw, 36px) clamp(28px, 4vw, 72px) clamp(28px, 3.5vw, 56px);
+      padding: clamp(20px, 2vw, 28px) clamp(28px, 4vw, 72px);
       font-family: var(--type);
       color: var(--ink);
       display: flex;
       flex-direction: column;
-      gap: clamp(20px, 3vw, 40px);
+      gap: clamp(14px, 1.6vw, 22px);
     }
 
     /* TOP-LEFT — back link, first thing on the page */
@@ -59,6 +59,7 @@
       font-size: clamp(11px, 0.9vw, 13px);
       letter-spacing: 0.06em;
       text-transform: uppercase;
+      margin-bottom: clamp(14px, 1.8vw, 24px);
     }
     .topnav a {
       color: var(--ink);
@@ -72,45 +73,62 @@
     .content {
       display: flex;
       flex-direction: column;
-      gap: clamp(16px, 2vw, 28px);
+      gap: 0;
     }
 
-    .lede { max-width: 1100px; }
-    .lede .kicker {
-      display: block;
-      font-size: clamp(10px, 0.8vw, 12px);
-      letter-spacing: 0.04em;
+    .lede { max-width: 92ch; }
+    /* editorial signature line — retained uppercase-mono accent */
+    .lede-lead {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.5;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      margin: 0 0 clamp(16px, 1.8vw, 24px);
+      max-width: 92ch;
+    }
+    /* sentence-case mono body — readable measure, left rag */
+    .lede-body {
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.62;
+      letter-spacing: 0.01em;
+      margin: 0 0 1.2em;
+      max-width: 76ch;
+      text-align: left;
+      text-wrap: pretty;
+    }
+    .accent { color: var(--accent); }
+
+    .lede-aside {
+      margin-left: 0.15em;
+      font-size: 10px;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 12px;
+      opacity: 0.6;
+      font-weight: 600;
+      white-space: nowrap;
     }
-    .lede h1 {
-      font-family: var(--type);
-      font-weight: 400;
-      font-size: clamp(13px, 1.02vw, 15px);
-      line-height: 1.7;
-      letter-spacing: 0;
-      text-transform: uppercase;
-      margin: 0 0 clamp(20px, 3vw, 32px);
-      max-width: 92ch;
-    }
-    .lede p {
-      font-size: clamp(13px, 1.02vw, 15px);
-      line-height: 1.7;
-      letter-spacing: 0;
-      text-transform: uppercase;
-      margin: 0 0 1.1em;
-      max-width: 92ch;
-    }
-    .lede p:last-child { margin-bottom: 0; }
-    .lede strong { font-weight: 700; }
-    .lede .accent { color: var(--accent); }
 
-    /* MIDDLE — small map, pushed to the bottom-right quadrant */
+    /* wrapper: normal block flow so the float works on the text */
+    .wrap { display: flow-root; }
+    .lede-wrap {
+      max-width: none;
+      text-wrap: wrap;
+      text-align: left;
+      margin-top: 0;
+    }
+
+    /* MIDDLE — map floated upper-right; last paragraph wraps it */
     .stage {
+      float: right;
       width: 100%;
       max-width: 760px;
-      margin: auto 0 0 auto;   /* top:auto pushes it down, left:auto pushes it right */
+      margin: 0 0 clamp(10px, 1.2vw, 16px) clamp(24px, 3vw, 44px);
+      clear: right;
     }
     .stage svg {
       width: 100%;
@@ -121,6 +139,7 @@
 
     /* BOTTOM — minimal metadata + back link on one line */
     .footer {
+      clear: both;
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
@@ -130,7 +149,6 @@
       letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-top: auto;
     }
     .footer a {
       color: var(--ink);
@@ -198,9 +216,11 @@
       letter-spacing: 0.06em; fill: var(--ink); opacity: 0.38;
     }
     .map-caption {
+      float: right;
+      clear: right;
       width: 100%;
       max-width: 760px;
-      margin: 8px 0 0 auto;   /* match .stage: hug the right edge */
+      margin: 8px 0 clamp(10px, 1.2vw, 16px) clamp(24px, 3vw, 44px);
       text-align: right;
       font-family: var(--type);
       font-size: clamp(10px, 0.82vw, 12px);
@@ -212,9 +232,17 @@
 
     @media (max-width: 760px) {
       .lede { max-width: none; }
-      .lede h1 { white-space: normal; }
-      .lede p { max-width: none; }
+      .lede-lead { max-width: none; }
+      .lede-body { max-width: none; }
       .stage svg { max-height: none; }
+      .wrap { display: block; }
+      .stage { float: none; max-width: none; margin: clamp(16px, 4vw, 24px) 0 0; }
+      .map-caption { float: none; max-width: none; margin: 8px 0 0; }
+      .lede-wrap { margin-top: 0; }
+    }
+    @media (min-width: 1600px) {
+      .lede-wrap { max-width: 92ch; }
+      .footer { margin-top: auto; }
     }
   </style>
 </head>
@@ -232,32 +260,32 @@
       <!-- TOP — title + story on their own lines -->
       <div class="content">
         <div class="lede">
-          <span class="kicker">Earlier</span>
-          <h1>
-            <strong>Brand Manager at Benefit Cosmetics</strong> across 15
-            domestic duty-free locations in Korea. Worked on launching 20+
-            SKUs and running promotions in airport and downtown stores.
-          </h1>
-          <p>
-            During one of our store visits at Incheon Airport, a woman and her
-            teenage daughter walked in saying they still had about 40 minutes
-            before boarding. They quickly scanned the store, tested only a
-            couple of products, then naturally followed our visual cues to the
-            gift-set corner and finished their purchase in a short amount of
-            time. Watching scenes like this taught me how travelers actually
-            behave under time pressure: they skim instead of read, follow
-            sightlines instead of floor plans, and make decisions in seconds
-            rather than minutes. That understanding now directly shapes how I
-            design information architecture and user flows as a
-            <span class="accent">design engineer</span>, so users can find
-            their way through a digital product as intuitively as those
-            passengers found their way through our duty-free store.
+          <p class="lede-lead">
+            Travelers are more likely to scan than to read, and to follow
+            sightlines rather than floor plans.
+          </p>
+          <p class="lede-body">
+            I developed that perspective as a brand manager at Benefit
+            Cosmetics across 15 domestic duty-free locations in Korea,
+            working on 20+ SKU launches and promotions in airport and
+            downtown stores.<span class="lede-aside">Previously</span>
+          </p>
+          <p class="lede-body">
+            On store visits at Incheon Airport, I kept seeing the same
+            pattern: passengers would walk in with limited time, take a quick
+            lap, and let our visual cues guide them to what they needed. One
+            mother and daughter who &ldquo;still had about 40 minutes before
+            boarding&rdquo; scanned the space, tested just a couple of
+            products, and went straight to the gift-set corner to check out
+            within a few minutes.
           </p>
         </div>
-      </div>
 
-      <!-- MIDDLE — detailed ICN T1 schematic (grey, Benefit-focused) -->
-      <div class="stage">
+        <!-- text wraps the floated map -->
+        <div class="wrap">
+
+        <!-- MIDDLE — detailed ICN T1 schematic (grey, Benefit-focused) -->
+        <div class="stage">
         <svg viewBox="640 96 1040 492" xmlns="http://www.w3.org/2000/svg" role="img"
              aria-label="Schematic of Incheon Airport Terminal 1 duty-free: a grey curved concourse band with two arms rising at each side, boarding-gate stubs with gate numbers, a lower grey immigration arc with numbered circles one to six, store blocks with category leader-line labels, an information point, and the Benefit Cosmetics counter highlighted in accent colour.">
 
@@ -357,8 +385,21 @@
         </svg>
       </div>
 
-      <!-- map caption (HTML, right-aligned under the map) -->
-      <p class="map-caption">INCHEON INTERNATIONAL AIRPORT · TERMINAL 1</p>
+        <!-- map caption (HTML, right-aligned under the map) -->
+        <p class="map-caption">INCHEON INTERNATIONAL AIRPORT · TERMINAL 1</p>
+
+        <p class="lede-body lede-wrap">
+          As a brand manager, I used moments like this to adjust where we
+          placed hero products, how we framed offers, and which signals we
+          made most visible. As a <span class="accent">design engineer</span>
+          now, I rely on the same instinct when I structure information
+          architecture and user flows, focusing on what people see
+          first, how they move through a journey, and how little friction it
+          takes for them to decide.
+        </p>
+
+        </div>
+      </div>
 
       <!-- BOTTOM — minimal metadata -->
       <footer class="footer">
