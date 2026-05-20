@@ -1,12 +1,12 @@
 # Seohyeon Kimkenny
 
-I design and engineer interfaces at [Techequity AI](https://techequity.ai), most recently redesigning and shipping the new homepage.
+I design and engineer interfaces at [Techequity AI](https://techequity-ai.org/), most recently redesigning and shipping the new homepage.
 
 ---
 
 ## 01 Projects
 
-- **[Techequity AI](#)** (highlight) — Redesigned and built the new homepage.
+- **[Techequity AI](https://techequity-ai.org/)** (highlight) — Redesigned and built the new homepage.
 - **[Techequity AI Events](#)** — Event design for 2,000+ AI summit attendees.
 - **[Lingoleap AI](#)** (highlight) — Built the design system.
 - **[Shades](#)** (highlight) — Designed in-house game features.
