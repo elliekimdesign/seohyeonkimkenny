@@ -2,7 +2,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #ffffff;
+  --bg: #fffdf3;
   --ink: #1f1b18;
   --muted: #b3b3b3;
   --accent: #6ea5c8;
@@ -10,13 +10,23 @@
   --line-soft: rgba(0, 0, 0, 0.015);
   --check-tint: rgba(0, 0, 0, 0.01);
   --line-pink: rgba(230, 75, 130, 0.14);
-  --line-sky: rgba(110, 165, 200, 0.34);
+  --line-sky: rgba(140, 200, 235, 0.32);
   --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
   --serif: 'Instrument Serif', Georgia, serif;
   --display: 'Boldonse', 'JetBrains Mono', monospace;
 
   --content-width: 840px;
   --col-gap: 0px;
+}
+
+/* Text selection — sky accent tint, site-wide */
+::selection {
+  background: rgba(110, 165, 200, 0.45);
+  color: var(--ink);
+}
+::-moz-selection {
+  background: rgba(110, 165, 200, 0.45);
+  color: var(--ink);
 }
 
 html, body {
@@ -50,11 +60,11 @@ body {
     /* 2. PINK side verticals — 24px to the left of each inner sky pillar. 3 different dusty tones for tartan check pattern. */
     linear-gradient(to right,
       /* warm dusty rose */
-      transparent calc(27.25% - 25px), rgba(210, 135, 145, 0.09) calc(27.25% - 25px), rgba(210, 135, 145, 0.09) calc(27.25% - 24px), transparent calc(27.25% - 24px),
-      /* deeper dusty mauve */
-      transparent calc(51.5% - 25px),  rgba(190, 115, 140, 0.11) calc(51.5% - 25px),  rgba(190, 115, 140, 0.11) calc(51.5% - 24px),  transparent calc(51.5% - 24px),
-      /* cool dusty pink */
-      transparent calc(75.75% - 25px), rgba(200, 130, 160, 0.08) calc(75.75% - 25px), rgba(200, 130, 160, 0.08) calc(75.75% - 24px), transparent calc(75.75% - 24px)),
+      transparent calc(27.25% - 25px), rgba(245, 200, 200, 0.35) calc(27.25% - 25px), rgba(245, 200, 200, 0.35) calc(27.25% - 24px), transparent calc(27.25% - 24px),
+      /* bright yellow */
+      transparent calc(51.5% - 25px),  rgba(245, 200, 200, 0.35) calc(51.5% - 25px),  rgba(245, 200, 200, 0.35) calc(51.5% - 24px),  transparent calc(51.5% - 24px),
+      /* bright yellow */
+      transparent calc(75.75% - 25px), rgba(245, 200, 200, 0.35) calc(75.75% - 25px), rgba(245, 200, 200, 0.35) calc(75.75% - 24px), transparent calc(75.75% - 24px)),
     /* 4. SKY verticals at 3 / 27.25 / 51.5 / 75.75 / 100 — 4 equal columns of 24.25% each */
     linear-gradient(to right,
       transparent calc(3% - 1px),     var(--line-sky) calc(3% - 1px),     var(--line-sky) 3%,     transparent 3%,
@@ -64,15 +74,12 @@ body {
       transparent calc(100% - 1px),   var(--line-sky) calc(100% - 1px),   var(--line-sky) 100%,   transparent 100%),
     /* 4b. PINK verticals: each sits 96px (≈11.43%) to the left of a sky line for square check pattern */
     linear-gradient(to right,
-      transparent calc(15.82% - 1px), rgba(230, 75, 130, 0.09) calc(15.82% - 1px), rgba(230, 75, 130, 0.09) 15.82%, transparent 15.82%,
-      transparent calc(40.07% - 1px), rgba(230, 75, 130, 0.09) calc(40.07% - 1px), rgba(230, 75, 130, 0.09) 40.07%, transparent 40.07%,
-      transparent calc(64.32% - 1px), rgba(230, 75, 130, 0.09) calc(64.32% - 1px), rgba(230, 75, 130, 0.09) 64.32%, transparent 64.32%,
-      transparent calc(88.57% - 1px), rgba(230, 75, 130, 0.09) calc(88.57% - 1px), rgba(230, 75, 130, 0.09) 88.57%, transparent 88.57%),
-    /* 5. horizontal lines, every 96px — warm pink-tinted neutral, starting from sky line at 3% */
-    linear-gradient(to bottom, rgba(180, 90, 110, 0.05) 1px, transparent 1px),
-    /* 6. horizontal SKY accent (removed — was creating an unwanted thick line) */
-    linear-gradient(to bottom, transparent 1px, transparent 1px),
-    /* 7. horizontal PINK accent (removed — was creating an unwanted thick line) */
+      transparent 0, transparent 100%),
+    /* 5. horizontal lines, every 96px — soft baby pink */
+    linear-gradient(to bottom, rgba(245, 200, 200, 0.20) 1px, transparent 1px),
+    /* 6. horizontal LEMON YELLOW accent — 288px repeat */
+    linear-gradient(to bottom, rgba(255, 250, 0, 0.20) 1px, transparent 1px),
+    /* 7. horizontal accent slot (empty) */
     linear-gradient(to bottom, transparent 1px, transparent 1px);
 
   background-size:
@@ -438,9 +445,9 @@ body.structure-mode .grid-bg {
   background-image:
     /* 2. PINK side verticals — 24px to the left of each inner sky pillar (dusty tones) */
     linear-gradient(to right,
-      transparent calc(27.25% - 25px), rgba(210, 135, 145, 0.11) calc(27.25% - 25px), rgba(210, 135, 145, 0.11) calc(27.25% - 24px), transparent calc(27.25% - 24px),
-      transparent calc(51.5% - 25px),  rgba(190, 115, 140, 0.13) calc(51.5% - 25px),  rgba(190, 115, 140, 0.13) calc(51.5% - 24px),  transparent calc(51.5% - 24px),
-      transparent calc(75.75% - 25px), rgba(200, 130, 160, 0.10) calc(75.75% - 25px), rgba(200, 130, 160, 0.10) calc(75.75% - 24px), transparent calc(75.75% - 24px)),
+      transparent calc(27.25% - 25px), rgba(245, 200, 200, 0.40) calc(27.25% - 25px), rgba(245, 200, 200, 0.40) calc(27.25% - 24px), transparent calc(27.25% - 24px),
+      transparent calc(51.5% - 25px),  rgba(245, 200, 200, 0.40) calc(51.5% - 25px),  rgba(245, 200, 200, 0.40) calc(51.5% - 24px),  transparent calc(51.5% - 24px),
+      transparent calc(75.75% - 25px), rgba(245, 200, 200, 0.40) calc(75.75% - 25px), rgba(245, 200, 200, 0.40) calc(75.75% - 24px), transparent calc(75.75% - 24px)),
     /* 4. SKY verticals at 3 / 27.25 / 51.5 / 75.75 / 100 — STRONGER, 4 equal columns */
     linear-gradient(to right,
       transparent calc(3% - 1px),     rgba(110, 165, 200, 0.7) calc(3% - 1px),     rgba(110, 165, 200, 0.7) 3%,     transparent 3%,
@@ -450,16 +457,13 @@ body.structure-mode .grid-bg {
       transparent calc(100% - 1px),   rgba(110, 165, 200, 0.7) calc(100% - 1px),   rgba(110, 165, 200, 0.7) 100%,   transparent 100%),
     /* 4b. PINK verticals — 96px to the left of each sky pillar */
     linear-gradient(to right,
-      transparent calc(15.82% - 1px), rgba(230, 75, 130, 0.08) calc(15.82% - 1px), rgba(230, 75, 130, 0.08) 15.82%, transparent 15.82%,
-      transparent calc(40.07% - 1px), rgba(230, 75, 130, 0.08) calc(40.07% - 1px), rgba(230, 75, 130, 0.08) 40.07%, transparent 40.07%,
-      transparent calc(64.32% - 1px), rgba(230, 75, 130, 0.08) calc(64.32% - 1px), rgba(230, 75, 130, 0.08) 64.32%, transparent 64.32%,
-      transparent calc(88.57% - 1px), rgba(230, 75, 130, 0.08) calc(88.57% - 1px), rgba(230, 75, 130, 0.08) 88.57%, transparent 88.57%),
-    /* 5. horizontal 96px ROW (kept as default) */
-    linear-gradient(to bottom, rgba(180, 90, 110, 0.05) 1px, transparent 1px),
+      transparent 0, transparent 100%),
+    /* 5. horizontal 96px ROW — soft baby pink (kept as default) */
+    linear-gradient(to bottom, rgba(245, 200, 200, 0.20) 1px, transparent 1px),
     /* 6. horizontal SKY 288px section (kept as default) */
     linear-gradient(to bottom, rgba(110, 165, 200, 0.14) 1px, transparent 1px),
-    /* 7. horizontal PINK 576px (kept as default) */
-    linear-gradient(to bottom, rgba(230, 75, 130, 0.10) 1px, transparent 1px);
+    /* 7. horizontal LEMON YELLOW 576px (was pink) */
+    linear-gradient(to bottom, rgba(255, 250, 0, 0.20) 1px, transparent 1px);
 
   background-size:
     100% 100%,
@@ -672,16 +676,13 @@ body.inspect-mode .mode-btn.is-active::before {
         transparent calc(97% - 1px), var(--line-sky) calc(97% - 1px), var(--line-sky) 97%, transparent 97%),
       /* 1b. PINK verticals — softer on mobile to reduce check pattern density */
       linear-gradient(to right,
-        transparent calc(15% - 1px), rgba(230, 75, 130, 0.04) calc(15% - 1px), rgba(230, 75, 130, 0.04) 15%, transparent 15%,
-        transparent calc(40% - 1px), rgba(230, 75, 130, 0.04) calc(40% - 1px), rgba(230, 75, 130, 0.04) 40%, transparent 40%,
-        transparent calc(65% - 1px), rgba(230, 75, 130, 0.04) calc(65% - 1px), rgba(230, 75, 130, 0.04) 65%, transparent 65%,
-        transparent calc(90% - 1px), rgba(230, 75, 130, 0.04) calc(90% - 1px), rgba(230, 75, 130, 0.04) 90%, transparent 90%),
-      /* 5. horizontal lines — warm pink-tinted neutral, softer on mobile */
-      linear-gradient(to bottom, rgba(180, 90, 110, 0.03) 1px, transparent 1px),
+        transparent 0, transparent 100%),
+      /* 5. horizontal lines — soft baby pink, softer on mobile */
+      linear-gradient(to bottom, rgba(245, 200, 200, 0.14) 1px, transparent 1px),
       /* 6. horizontal sky accent — softer */
       linear-gradient(to bottom, rgba(110, 165, 200, 0.08) 1px, transparent 1px),
-      /* 7. horizontal pink accent — softer */
-      linear-gradient(to bottom, rgba(230, 75, 130, 0.05) 1px, transparent 1px);
+      /* 7. horizontal LEMON YELLOW accent — was pink */
+      linear-gradient(to bottom, rgba(255, 250, 0, 0.20) 1px, transparent 1px);
     background-size:
       100% 100%,
       100% 100%,
