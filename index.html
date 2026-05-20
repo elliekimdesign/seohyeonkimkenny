@@ -179,10 +179,10 @@
           var li = line.match(/^-\s+(.+)$/);
           if (li && section) {
             var rest = li[1];
-            // try bold-link form: **[title](url)** — desc
-            var m = rest.match(/^\*\*\[([^\]]+)\]\(([^)]+)\)\*\*\s*[—-]\s*(.+)$/);
+            // try bold-link form: **[title](url)** [(highlight)] — desc
+            var m = rest.match(/^\*\*\[([^\]]+)\]\(([^)]+)\)\*\*(\s*\(highlight\))?\s*[—-]\s*(.+)$/);
             if (m) {
-              section.items.push({ title: m[1], url: m[2], desc: m[3], earlier: inEarlier });
+              section.items.push({ title: m[1], url: m[2], desc: m[4], earlier: inEarlier, highlight: !!m[3] });
             } else {
               // plain form: title — desc
               var m2 = rest.match(/^([^—\-]+?)\s*[—-]\s*(.+)$/);
@@ -226,7 +226,8 @@
             var titleClass = 'item-title' + (it.earlier ? ' earlier-item' : '');
             var isInternal = it.url === '#' || it.url.endsWith('.html') || it.url.startsWith('/');
             var attr = isInternal ? '' : ' target="_blank" rel="noopener"';
-            html += '<li><a href="' + it.url + '"' + attr + '">';
+            var hlClass = it.highlight ? ' class="item-highlight"' : '';
+            html += '<li><a href="' + it.url + '"' + attr + hlClass + '>';
             html += '<span class="' + titleClass + '">' + esc(it.title) + '</span>';
             html += '<span class="item-desc">' + esc(it.desc) + '</span>';
             html += '</a></li>';

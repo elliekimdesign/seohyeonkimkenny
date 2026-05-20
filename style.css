@@ -161,11 +161,16 @@ body {
 .intro .tagline a {
   color: var(--ink);
   text-decoration: underline;
+  text-decoration-color: var(--muted);
   text-underline-offset: 3px;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease, font-weight 0.2s ease;
 }
 
-.intro .tagline a:hover { color: var(--accent); }
+.intro .tagline a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+  font-weight: 700;
+}
 
 /* ---------- horizontal divider: pink + sky double line, aligned to sky vertical at 3% ---------- */
 hr {
@@ -272,8 +277,16 @@ hr {
   transition: color 0.2s ease;
 }
 
-.items a:hover .item-title,
-.items a:hover .item-desc { color: var(--accent); }
+/* hover effects only on highlighted items (4 marked with (highlight) in md) */
+.items a.item-highlight:hover .item-title,
+.items a.item-highlight:hover .item-desc { color: var(--accent); }
+
+.items a.item-highlight:hover .item-title {
+  text-decoration: underline;
+  text-decoration-color: rgba(110, 165, 200, 0.55);
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
 
 /* ---------- contact block ----------
    contact-content sits in container column 2. Same offset as item-title: 17.7px. */

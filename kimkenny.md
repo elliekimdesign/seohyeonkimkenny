@@ -6,15 +6,15 @@ I design and engineer interfaces at [Techequity AI](https://techequity.ai), most
 
 ## 01 Projects
 
-- **[Techequity AI](#)** — Redesigned and built the new homepage.
+- **[Techequity AI](#)** (highlight) — Redesigned and built the new homepage.
 - **[Techequity AI Events](#)** — Event design for 2,000+ AI summit attendees.
-- **[Lingoleap AI](#)** — Built the design system.
-- **[Shades](#)** — Designed in-house game features.
+- **[Lingoleap AI](#)** (highlight) — Built the design system.
+- **[Shades](#)** (highlight) — Designed in-house game features.
 
 ### Previously
 
 - Zespri — Data behind 80% of all kiwis. (Yes, the fruit.)
-- **[Benefit Cosmetics](benefit-cosmetics-map.html)** — Launched 20+ products across Korean duty-free stores.
+- **[Benefit Cosmetics](benefit-cosmetics-map.html)** (highlight) — Launched 20+ products across Korean duty-free stores.
 - L'Oréal — Marketing on Valentino Beauty's first Korea launch.
 
 ---
